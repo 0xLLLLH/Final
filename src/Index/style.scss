@@ -1,0 +1,24 @@
+$form-width: 300px;
+
+.index-wrap {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.login-form-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $form-width;
+    transform: translate(-50%, -50%);
+
+    .ant-tabs-nav {
+        left: 50%;
+        transform: translateX(-50%);
+
+        .ant-tabs-tab {
+            margin: 0 12px;
+        }
+    }
+}

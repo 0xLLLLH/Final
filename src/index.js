@@ -11,7 +11,10 @@ const store = createStore(Reducer);
 
 function renderContainer() {
     ReactDOM.render(
-        <AppContainer>
+        <AppContainer style={{
+            width: '100%',
+            height: '100%'
+        }}>
             <Provider store={store}>
                 <App />
             </Provider>
