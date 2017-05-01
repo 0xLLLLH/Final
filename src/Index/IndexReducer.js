@@ -1,21 +1,25 @@
 import {combineReducers} from 'react-redux';
 
-import {ActionTypes} from './IndexActions';
+import * as api from './api';
+
+import { ActionTypes } from './IndexActions';
 
 const account = (state, action) => {
     const {userName, password} = action.data;
     switch (action.type) {
-    case ActionTypes.registerAccount:
-        return {
-            isLogedIn: true,
+    case ActionTypes.register:
+        return api.register({
             userName,
             password
-        };
+        });
+    case ActionTypes.login:
+        return api.login({
+            userName,
+            password
+        });
     default:
         return {
-            isLogedIn: false,
-            userName: '',
-            password: ''
+            isLogedIn: false
         };
     }
 };

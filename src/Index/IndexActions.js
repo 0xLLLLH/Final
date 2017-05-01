@@ -1,18 +1,18 @@
 export const ActionTypes = {
-    loginAccount: Symbol('action-login-account'),
-    registerAccount: Symbol('action-register-account'),
+    login: Symbol('action-account-login'),
+    registerAccount: Symbol('action-account-register'),
     showError: Symbol('action-showError')
 };
 
-export const loginAccount = (userName, password) => ({
-    type: ActionTypes.loginAccount,
+export const login = (userName, password) => ({
+    type: ActionTypes.login,
     data: {
         userName,
         password
     }
 });
-export const registerAccount = (userName, password) => ({
-    type: ActionTypes.registerAccount,
+export const register = (userName, password) => ({
+    type: ActionTypes.register,
     data: {
         userName,
         password

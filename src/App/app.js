@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {
     BrowserRouter as Router,
-    Route
+    Route,
+    Switch
 } from 'react-router-dom';
 
 import Index from '../Index/Index';
@@ -11,10 +12,11 @@ class App extends Component {
     render() {
         return (
             <Router>
-                <div>
-                    <Route exact path="/" component={Index} />
-                    <Route path="/todos" component={TodoList} />
-                </div>
+                <Switch>
+                    <Route exact path="/todos" component={TodoList} />
+                    <Route path="/:tab" component={Index} />
+                    <Route component={Index} />
+                </Switch>
             </Router>
         );
     }
