@@ -1,7 +1,7 @@
 export const ActionTypes = {
-    loginAccount: Symbol(),
-    registerAccount: Symbol(),
-    showError: Symbol()
+    loginAccount: Symbol('action-login-account'),
+    registerAccount: Symbol('action-register-account'),
+    showError: Symbol('action-showError')
 };
 
 export const loginAccount = (userName, password) => ({
@@ -19,7 +19,7 @@ export const registerAccount = (userName, password) => ({
     }
 });
 
-export const showError = (msg) => ({
+export const showError = msg => ({
     type: ActionTypes.showError,
     data: {
         msg

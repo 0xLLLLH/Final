@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import './LoginForm.scss';
 
 const FormItem = Form.Item;
 
-const NormalLoginForm  = ({form, onSubmit, className}) => {
+const NormalLoginForm = ({form, onSubmit, className}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         form.validateFields((err, values) => {
@@ -14,8 +14,9 @@ const NormalLoginForm  = ({form, onSubmit, className}) => {
                 console.log('Received values of form: ', values);
             }
         });
-    }
+    };
     const { getFieldDecorator } = form;
+
     return (
         <Form onSubmit={handleSubmit} className={className || 'login-form'}>
             <FormItem>
@@ -46,7 +47,7 @@ const NormalLoginForm  = ({form, onSubmit, className}) => {
             </FormItem>
         </Form>
     );
-}
+};
 
 const WrappedNormalLoginForm = Form.create()(NormalLoginForm);
 

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Tabs} from 'antd';
 import Particles from 'react-particles-js';
 import {connect} from 'react-redux';
@@ -25,14 +25,15 @@ const Index = ({onLogin, onSignup, onError}) => (
         <Particles
             className="particles-js-canvas"
             width="1920px"
-            params={particles} />
+            params={particles}
+        />
     </div>
 );
 
 const mapStateToProps = (state) => {
     return {
         isLogedIn: false
-    }
+    };
 };
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -43,9 +44,9 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(IndexAction.registerAccount(userName, password));
         },
         onError: (error) => {
-            dispatch(IndexAction.showError(error))
+            dispatch(IndexAction.showError(error));
         }
-    }
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index);

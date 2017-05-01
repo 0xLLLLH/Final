@@ -1,13 +1,13 @@
-let nextIndex = 0;
+import v4 from 'uuid/v4';
+
 export const AddTodo = (text) => {
     const action = {
         type: 'ADD_TODO',
         todo: {
-            id: nextIndex,
+            id: v4(),
             text
         }
     };
-    nextIndex += 1;
     return action;
 };
 

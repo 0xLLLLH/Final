@@ -1,8 +1,8 @@
 import {combineReducers} from 'react-redux';
 
-import ActionTypes from './IndexActions';
+import {ActionTypes} from './IndexActions';
 
-const account = (account, action) => {
+const account = (state, action) => {
     const {userName, password} = action.data;
     switch (action.type) {
     case ActionTypes.registerAccount:
@@ -16,11 +16,11 @@ const account = (account, action) => {
             isLogedIn: false,
             userName: '',
             password: ''
-        }
+        };
     }
 };
 
-const error = (error, action) => {
+const error = (state, action) => {
     const { msg } = action.data;
     switch (action.type) {
     case ActionTypes.showError:
@@ -32,7 +32,7 @@ const error = (error, action) => {
         return {
             hasError: false,
             msg: ''
-        }
+        };
     }
 };
 

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import React from 'react';
+import { Form, Icon, Input, Button } from 'antd';
 
 import './SignupForm.scss';
 
@@ -15,17 +15,18 @@ const NormalSignupForm = ({ form, onSubmit, className }) => {
                 console.log('Received values of form: ', values);
             }
         });
-    }
+    };
     const handleConfirmPassword = (rule, value, callback) => {
-        const { getFieldValue } = form
+        const { getFieldValue } = form;
         if (value && value !== getFieldValue('password')) {
-            callback('两次输入不一致！')
+            callback('两次输入不一致！');
         }
 
         // Note: 必须总是返回一个 callback，否则 validateFieldsAndScroll 无法响应
-        callback()
-    }
+        callback();
+    };
     const { getFieldDecorator } = form;
+
     return (
         <Form onSubmit={handleSubmit} className={className || 'signup-form'}>
             <FormItem>
@@ -63,7 +64,7 @@ const NormalSignupForm = ({ form, onSubmit, className }) => {
             </FormItem>
         </Form>
     );
-}
+};
 
 const WrappedNormalSignupForm = Form.create()(NormalSignupForm);
 
