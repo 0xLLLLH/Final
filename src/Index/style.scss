@@ -8,10 +8,10 @@ $form-width: 300px;
 
 .login-form-wrap {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
+    margin-left: -$form-width/2;
     width: $form-width;
-    transform: translate(-50%, -50%);
 
     .ant-tabs-nav {
         left: 50%;

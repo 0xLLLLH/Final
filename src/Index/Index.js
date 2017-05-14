@@ -3,51 +3,72 @@ import { Tabs } from 'antd';
 import Particles from 'react-particles-js';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import LoginForm from '../components/LoginForm';
 import SignupForm from '../components/SignupForm';
-import * as IndexAction from './IndexActions';
+import * as AppActions from '../App/AppActions';
 
+import * as IndexActions from './IndexActions';
 import './style.scss';
 import particles from './particles.json';
 
 const {TabPane} = Tabs;
 
-const Index = ({tab, onLogin, onSignup, onError}) => (
-    <div className="index-wrap">
-        <Tabs defaultActiveKey={tab} className="login-form-wrap" >
-            <TabPane tab={<Link to="/signin">登录</Link>} key="signin">
-                <LoginForm onSubmit={onLogin} onError={onError} />
-            </TabPane>
-            <TabPane tab={<Link to="/signup">注册</Link>} key="signup">
-                <SignupForm onSubmit={onSignup} onError={onError} />
-            </TabPane>
-        </Tabs>
-        <Particles
-            className="particles-js-canvas"
-            width="1920px"
-            params={particles}
+const Index = ({account, tab, onLogin, onSignup, onTabChange}) => (
+    account.isLogedIn ? (
+        <Redirect
+            to={{
+                pathname: '/todos'
+            }}
         />
-    </div>
+    ) : (
+        <div className="index-wrap">
+            <Particles
+                className="particles-js-canvas"
+                width="1920px"
+                params={particles}
+            />
+            <Tabs
+                defaultActiveKey={tab}
+                className="login-form-wrap"
+                onChange={onTabChange}
+            >
+                <TabPane tab={<Link to="/signin">登录</Link>} key="signin">
+                    <LoginForm onSubmit={onLogin} />
+                </TabPane>
+                <TabPane tab={<Link to="/signup">注册</Link>} key="signup">
+                    <SignupForm onSubmit={onSignup} />
+                </TabPane>
+            </Tabs>
+        </div>
+    )
 );
 
 const mapStateToProps = (state, {match}) => {
+    const { account } = state;
     return {
-        isLogedIn: false,
+        account,
+        ...state.Index,
         tab: match.params.tab || 'signin'
     };
 };
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, {match}) => {
     return {
         onLogin: (userName, password) => {
-            dispatch(IndexAction.login(userName, password));
+            dispatch(AppActions.login({
+                userName,
+                password
+            }));
         },
         onSignup: (userName, password) => {
-            dispatch(IndexAction.register(userName, password));
+            dispatch(AppActions.register({
+                userName,
+                password}
+            ));
         },
-        onError: (error) => {
-            dispatch(IndexAction.showError(error));
+        onTabChange: (tab) => {
+            dispatch(IndexActions.switchTab({tab}));
         }
     };
 };

@@ -1,27 +1,10 @@
 export const ActionTypes = {
-    login: Symbol('action-account-login'),
-    registerAccount: Symbol('action-account-register'),
-    showError: Symbol('action-showError')
+    switchTab: Symbol('action-switch-tab')
 };
 
-export const login = (userName, password) => ({
-    type: ActionTypes.login,
+export const switchTab = ({tab}) => ({
+    type: ActionTypes.switchTab,
     data: {
-        userName,
-        password
-    }
-});
-export const register = (userName, password) => ({
-    type: ActionTypes.register,
-    data: {
-        userName,
-        password
-    }
-});
-
-export const showError = msg => ({
-    type: ActionTypes.showError,
-    data: {
-        msg
+        tab
     }
 });

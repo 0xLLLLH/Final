@@ -29,7 +29,7 @@ renderContainer();
 if (module.hot) {
     module.hot.accept([
         './App/app',
-        './App/Reducer'
+        './'
     ], () => {
         const nextReducer = require('./App/Reducer').default;       // eslint-disable-line
         store.replaceReducer(nextReducer);

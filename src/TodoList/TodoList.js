@@ -1,12 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import * as TodoActions from './TodoActions';
 
-const mapStateToTodoListProps = state => ({
-    todos: state.todos.filter(todo => (
-            state.filter === 'ALL' ||
-            (state.filter === 'COMPLETED' && todo.completed) ||
-            (state.filter === 'INCOMPLETED' && !todo.completed)
+const mapStateToTodoListProps = ({ TodoList }) => ({
+    todos: TodoList.todos.filter(todo => (
+            TodoList.filter === 'ALL' ||
+            (TodoList.filter === 'COMPLETED' && todo.completed) ||
+            (TodoList.filter === 'INCOMPLETED' && !todo.completed)
         ))
 });
 const mapDispatchToTodoListProps = dispatch => ({
@@ -70,6 +72,7 @@ const VisibleTodoList = ({dispatch}) => (
                 }}
             >INCOMPLETED</a>
         </div>
+        <Link to="/">Go Back Home</Link>
         <TodoList />
     </div>
 );

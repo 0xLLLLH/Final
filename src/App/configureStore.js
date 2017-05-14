@@ -1,6 +1,8 @@
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import throttle from 'lodash/throttle';
+import promise from 'redux-promise';
+import { createLogger } from 'redux-logger';
 
 import { loadState, saveState } from './localStorage';
 
@@ -8,11 +10,7 @@ import Reducer from './Reducer';
 
 const getConfiguredStore = () => {
     const preloadedState = loadState();
-    const actionLogger = ({dispatch, getState}) => next => (action) => {
-        console.log(action);    // eslint-disable-line no-console
-        return next(action);
-    };
-    const middlewares = [actionLogger];
+    const middlewares = [promise, createLogger()];
     const store = createStore(
         Reducer,
         preloadedState,
