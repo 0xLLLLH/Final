@@ -1,29 +1,5 @@
-$form-width: 300px;
+@import '../App/style.scss';
 
-.index-wrap {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-.login-form-wrap {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    margin-left: -$form-width/2;
-    width: $form-width;
-
-    .ant-tabs-nav {
-        left: 50%;
-        transform: translateX(-50%);
-
-        .ant-tabs-tab {
-            margin: 0 12px;
-            padding: 0;
-        }
-        .ant-tabs-tab a {
-            display: inline-block;
-            padding: 8px 20px;
-        }
-    }
+.layout {
+    background: #fff;
 }

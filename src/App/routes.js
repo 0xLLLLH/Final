@@ -1,3 +1,4 @@
+import Auth from '../Auth/Auth';
 import Index from '../Index/Index';
 import TodoList from '../TodoList/TodoList';
 
@@ -5,20 +6,19 @@ export default [
     {
         path: '/',
         exact: true,
-        nav: false,
-        sidebar: null,
-        main: Index
-    },
-    {
-        path: '/:tab',
-        nav: false,
         sidebar: null,
         main: Index
     },
     {
         path: '/todos',
-        nav: true,
+        exact: true,
         sidebar: null,
-        main: TodoList
+        main: TodoList,
+        auth: true
+    },
+    {
+        path: '/:tab',
+        sidebar: null,
+        main: Auth
     }
 ];

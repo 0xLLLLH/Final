@@ -12,11 +12,9 @@ export const showMsg = data => ({
     data
 });
 
-export const fetchUserData = ({userId}) => ({
+export const fetchUserData = (response) => ({
     type: ActionTypes.fetchUserData,
-    data: {
-        userId
-    }
+    data: response
 });
 
 export const login = ({

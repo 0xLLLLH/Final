@@ -1,48 +1,74 @@
 import React from 'react';
-import { Tabs } from 'antd';
-import Particles from 'react-particles-js';
+import {
+    Layout,
+    Menu,
+    Icon,
+    Tabs
+} from 'antd';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { Link, Redirect } from 'react-router-dom';
 
+import NavBar from '../components/NavBar';
 import LoginForm from '../components/LoginForm';
 import SignupForm from '../components/SignupForm';
+import TimeLine from '../components/TimeLine';
+
 import * as AppActions from '../App/AppActions';
 
 import * as IndexActions from './IndexActions';
 import './style.scss';
-import particles from './particles.json';
 
-const {TabPane} = Tabs;
+const { TabPane } = Tabs;
+const { SubMenu } = Menu;
+const { Header, Content, Footer, Sider } = Layout;
 
 const Index = ({account, tab, onLogin, onSignup, onTabChange}) => (
-    account.isLogedIn ? (
-        <Redirect
-            to={{
-                pathname: '/todos'
-            }}
-        />
-    ) : (
-        <div className="index-wrap">
-            <Particles
-                className="particles-js-canvas"
-                width="1920px"
-                params={particles}
-            />
-            <Tabs
-                defaultActiveKey={tab}
-                className="login-form-wrap"
-                onChange={onTabChange}
-            >
-                <TabPane tab={<Link to="/signin">登录</Link>} key="signin">
-                    <LoginForm onSubmit={onLogin} />
-                </TabPane>
-                <TabPane tab={<Link to="/signup">注册</Link>} key="signup">
-                    <SignupForm onSubmit={onSignup} />
-                </TabPane>
-            </Tabs>
-        </div>
-    )
+    <Layout className="layout">
+        <Header className="header">
+            <NavBar account={account} />
+        </Header>
+        <Content>
+            <Layout style={{ padding: '24px 0', background: '#fff' }}>
+                <Content style={{ padding: '0 24px', minHeight: 280 }}>
+                    <TimeLine
+                        eventArray={[
+                            {
+                                _id: 123,
+                                source: {
+                                    userId: '3F12345678',
+                                    avatarLink: 'https://lh3.googleusercontent.com/-Cwz4QV1MyWI/AAAAAAAAAAI/AAAAAAAAAAA/AHalGhpU-e0ZsxYhmbY24sfx5e0xa7cMtw/s96-c-mo/photo.jpg'
+                                },
+                                type: 'LIKE',
+                                target: {
+                                    questionId: '3F12345678',
+                                    title: '被自己写的代码丑哭是一种什么样的体验？',
+                                },
+                                time: new Date()
+                            },
+                            {
+                                _id: 124,
+                                source: {
+                                    userId: '3F12345678'
+                                },
+                                type: 'LIKE',
+                                target: {
+                                    questionId: '3F12345678'
+                                },
+                                time: new Date()
+                            }
+                        ]}
+                    />
+                </Content>
+                <Sider width={200} style={{ background: '#fff' }}>
+                    Siderbar
+                </Sider>
+            </Layout>
+        </Content>
+        <Footer style={{ textAlign: 'center' }}>
+            0xLLLLH ©2016
+        </Footer>
+    </Layout>
 );
 
 const mapStateToProps = (state, {match}) => {
@@ -50,26 +76,10 @@ const mapStateToProps = (state, {match}) => {
     return {
         account,
         ...state.Index,
-        tab: match.params.tab || 'signin'
     };
 };
 const mapDispatchToProps = (dispatch, {match}) => {
     return {
-        onLogin: (userName, password) => {
-            dispatch(AppActions.login({
-                userName,
-                password
-            }));
-        },
-        onSignup: (userName, password) => {
-            dispatch(AppActions.register({
-                userName,
-                password}
-            ));
-        },
-        onTabChange: (tab) => {
-            dispatch(IndexActions.switchTab({tab}));
-        }
     };
 };
 
