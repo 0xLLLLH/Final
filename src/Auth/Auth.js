@@ -64,8 +64,7 @@ const mapDispatchToProps = (dispatch, { match }) => {
             dispatch(AppActions.register({
                 userName,
                 password
-            }
-            ));
+            }));
         },
         onTabChange: (tab) => {
             dispatch(AuthActions.switchTab({ tab }));

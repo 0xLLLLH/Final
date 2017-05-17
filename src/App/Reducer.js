@@ -2,6 +2,8 @@ import { combineReducers } from 'redux';
 
 import TodoList from '../TodoList/TodoListReducer';
 import Index from '../Index/IndexReducer';
+import Question from '../Question/QuestionReducer';
+import Auth from '../Auth/AuthReducer';
 
 import { ActionTypes } from './AppActions';
 
@@ -13,7 +15,7 @@ const account = (state, action) => {
             isLogedIn: true,
         };
     default:
-        return {
+        return state || {
             isLogedIn: false
         };
     }
@@ -37,5 +39,7 @@ export default combineReducers({
     account,
     message,
     TodoList,
+    Question,
+    Auth,
     Index
 });
