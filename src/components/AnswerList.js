@@ -9,20 +9,57 @@ import {
     Link
 } from 'react-router-dom';
 
+import AsyncMention from './AsyncMention';
+
 const Comment = ({comment}) => (
-    <div>
-        {comment.content}
+    <div style={{
+        padding: '10px 0',
+        borderBottom: '1px solid #eee'
+    }}>
+        <div style={{
+            marginBottom: '5px'
+        }}>
+            <img
+                src={comment.owner.avatarLink}
+                width="24px"
+                height="24px"
+                style={{
+                    float: 'left'
+                }}
+            />
+            <p style={{
+                marginLeft: '30px',
+                fontSize: '16px',
+                lineHeight: '24px',
+                color: '#333'
+            }}>{comment.owner.userName}</p>
+        </div>
+        <div style={{
+            fontSize: '16px',
+        }} dangerouslySetInnerHTML={{
+            __html: comment.content
+        }} />
+        <div className="comment-actions">
+            <Icon type="like-o" /> {comment.like || ''}
+        </div>
     </div>
 );
 
 const CommentList = ({comments}) => (
-    <div>
+    <Card title={`${(comments && comments.length) || 0} 条评论`} style={{
+        display: comments ? 'block' : 'none'
+    }}>
         {
             comments && comments.map(comment => (
                 <Comment key={comment.id} comment={comment} />
             ))
         }
-    </div>
+        <div style={{
+            marginBottom: 20
+        }}>
+            <div style={{width: 480, float: 'left' }}><AsyncMention /></div> <Button type="primary" style={{ marginLeft: 10, float: 'left'}}>评论</Button>
+        </div>
+    </Card>
 );
 
 const Answer = ({ answer, onUpvote, onDevote, onLoadComment, onHideComment }) => (
@@ -63,7 +100,9 @@ const Answer = ({ answer, onUpvote, onDevote, onLoadComment, onHideComment }) =>
             }}>编辑于{`${new Date(answer.time)}`}</p>
         </div>
         <div>
-            <div className="answer-actions">
+            <div className="answer-actions" style={{
+                marginBottom: '10px'
+            }}>
                 <Button type={answer.liked ? 'primary' : 'default'} style={{
                     marginRight: '10px'
                 }} onClick={() => {onUpvote({ answerId: answer.id})}}><Icon type="caret-up" style={{
@@ -99,7 +138,7 @@ const AnswerList = ({ answerList, onSwitchSortRule, onUpvote, onDevote, onLoadCo
     <Card className="answer-wrap" title={`${answerList.length || 0} 个回答`} extra={<a href="javascript:;" onClick={onSwitchSortRule}>修改排序</a>} style={{ width: 650 }}>
         {
             answerList.map(answer => (
-                <Answer answer={answer} onUpvote={onUpvote} onDevote={onDevote} onLoadComment={onLoadComment} onHideComment={onHideComment} />
+                <Answer key={answer.id} answer={answer} onUpvote={onUpvote} onDevote={onDevote} onLoadComment={onLoadComment} onHideComment={onHideComment} />
             ))
         }
     </Card>

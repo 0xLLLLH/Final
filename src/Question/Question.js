@@ -5,7 +5,8 @@ import {
     Icon,
     Tabs,
     Button,
-    Tag
+    Tag,
+    Card
 } from 'antd';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
@@ -13,6 +14,7 @@ import { Link, Redirect } from 'react-router-dom';
 
 import NavBar from '../components/NavBar';
 import AnswerList from '../components/AnswerList';
+import AsyncMention from '../components/AsyncMention';
 
 import * as QuestionActions from './QuestionActions'
 
@@ -43,7 +45,7 @@ class Question extends React.Component {
                         }}>
                         {
                             question.topics.map(tp => (
-                                <Tag color="blue" style={{
+                                <Tag key={tp} color="blue" style={{
                                     height: '30px',
                                     lineHeight: '30px'
                                 }}>{tp}</Tag>
@@ -73,7 +75,8 @@ class Question extends React.Component {
                             <h1>{question.title}</h1>
                         </div>
                         <div className="question-actions" style={{
-                            padding: '16px'
+                            padding: '16px',
+                            marginBottom: '10px'
                         }}>
                             <span style={{
                                 marginRight: '10px'
@@ -96,7 +99,7 @@ class Question extends React.Component {
                                     {question.followed ? '取消关注' : '关注问题'}
                                 </Button>
                                 <Button>
-                                    写回答
+                                    <a href="#write_answer">写回答</a>
                                 </Button>
                             </div>
                         </div>
@@ -115,8 +118,40 @@ class Question extends React.Component {
                                 onLoadComment={onLoadComment.bind(this)}
                                 onHideComment={onHideComment.bind(this)} />
                             <Button style={{
-                                width: '650px'
+                                width: '650px',
+                                marginBottom: 10
                             }} onClick={() => { onLoadMore({ questionId: question.questionId }) }}>加载更多</Button>
+                            <Card id="write_answer" style={{
+                                width: 650
+                            }}>
+                                <div style={{
+                                    height: 40,
+                                    marginBottom: 10
+                                }}>
+                                    <img src={account.avatarLink} width="40" height="40" style={{
+                                        float: 'left'
+                                    }}/>
+                                    <div style={{
+                                        marginLeft: 55
+                                    }}>
+                                        <p><span style={{
+                                            fontWeight: 'bold'
+                                        }}>{account.userName}</span> <a href="javascript:;" style={{float: 'right'}}>使用匿名回答</a></p>
+                                        <p>{account.bio}</p>
+                                    </div>
+                                </div>
+                                <AsyncMention
+                                    height="100"
+                                    multiLines/>
+                                <div style={{
+                                    height: 40,
+                                    marginTop: 10
+                                }}>
+                                    <Button type="primary" style={{
+                                        float: 'right'
+                                    }}>提交回答</Button>
+                                </div>
+                            </Card>
                         </Content>
                         <Sider width={200} style={{ background: '#fff' }}>
                             <div style={{ marginBottom: '10px', fontSize: '16px' }}>
