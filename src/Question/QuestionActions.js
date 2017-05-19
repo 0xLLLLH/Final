@@ -51,9 +51,9 @@ export const toggleFollow = () => ({
 });
 
 export const loadQuestion = ({
-    quesionId
-}) => api.loadQuestion({
-        quesionId
+    questionId
+}) =>  api.loadQuestion({
+        questionId
     }).then(
         (response) => fetchQuestion(response),
         msg => showMsg({
@@ -63,9 +63,9 @@ export const loadQuestion = ({
         );
 
 export const loadAnswers = ({
-    quesionId
+    questionId
 }) => api.loadAnswers({
-        quesionId
+        questionId
     }).then(
         (response) => fetchAnswer(response),
         msg => showMsg({
@@ -75,9 +75,9 @@ export const loadAnswers = ({
     );
 
 export const loadMore = ({
-    quesionId
+    questionId
 }) => api.loadAnswers({
-        quesionId
+        questionId
     }).then((response) => ({
         type: ActionTypes.loadMore,
         data: response

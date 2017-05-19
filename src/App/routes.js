@@ -1,5 +1,6 @@
 import Auth from '../Auth/Auth';
 import Index from '../Index/Index';
+import Admin from '../Admin/Admin';
 import TodoList from '../TodoList/TodoList';
 import Question from '../Question/Question';
 import Home from '../Home/Home';
@@ -13,6 +14,11 @@ export default [
         path: '/home',
         exact: true,
         main: Home,
+        auth: true
+    },
+    {
+        path: '/admin/:module',
+        main: Admin,
         auth: true
     },
     {

@@ -32,7 +32,7 @@ const Comment = ({comment}) => (
                 fontSize: '16px',
                 lineHeight: '24px',
                 color: '#333'
-            }}>{comment.owner.userName}</p>
+            }}>{comment.owner.nickName}</p>
         </div>
         <div style={{
             fontSize: '16px',
@@ -78,7 +78,7 @@ const Answer = ({ answer, onUpvote, onDevote, onLoadComment, onHideComment }) =>
                 <p style={{
                     fontSize: '16px',
                     fontWeight: 'bold'
-                }}>{answer.owner.userName}</p>
+                }}>{answer.owner.nickName}</p>
                 <p style={{
                     color: '#999'
                 }}>{answer.owner.bio}</p>

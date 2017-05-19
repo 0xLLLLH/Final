@@ -25,7 +25,7 @@ const { Header, Content, Footer, Sider } = Layout;
 class Index extends React.Component {
     componentDidMount() {
         this.props.onLoad({
-            userId: this.props.account.userId
+            userId: this.props.account.id
         });
     }
     render() {
@@ -45,7 +45,7 @@ class Index extends React.Component {
                             />
                             <Button style={{
                                 width: '650px'
-                            }} onClick={() => {onLoadMore({ userId: account.userId })}}>加载更多</Button>
+                            }} onClick={() => {onLoadMore({ userId: account.id })}}>加载更多</Button>
                         </Content>
                         <Sider width={200} style={{ background: '#fff' }}>
                             <div style={{ marginBottom: '10px', fontSize: '16px' }}>

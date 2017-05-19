@@ -34,7 +34,6 @@ const message = (state, action) => {
     };
 };
 
-
 export default combineReducers({
     account,
     message,

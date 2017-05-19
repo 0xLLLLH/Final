@@ -26,11 +26,11 @@ class Question extends React.Component {
     constructor(props) {
         super();
         props.onLoad({
-            questionId: props.match.questionId
+            questionId: parseInt(props.match.params.questionId, 10)
         });
     }
     render() {
-        const { account, question, onLoadMore, answerList, onSwitchSortRule, onToggleFollow, onUpvote, onDevote, onLoadComment, onHideComment } = this.props;
+        const { account, question, questionId, onLoadMore, answerList, onSwitchSortRule, onToggleFollow, onUpvote, onDevote, onLoadComment, onHideComment } = this.props;
         return (
             <Layout className="layout">
                 <Header className="header" style={{ position: 'fixed', width: '100%', zIndex: 99 }}>
@@ -120,7 +120,7 @@ class Question extends React.Component {
                             <Button style={{
                                 width: '650px',
                                 marginBottom: 10
-                            }} onClick={() => { onLoadMore({ questionId: question.questionId }) }}>加载更多</Button>
+                            }} onClick={() => { onLoadMore({ questionId }) }}>加载更多</Button>
                             <Card id="write_answer" style={{
                                 width: 650
                             }}>
@@ -136,7 +136,7 @@ class Question extends React.Component {
                                     }}>
                                         <p><span style={{
                                             fontWeight: 'bold'
-                                        }}>{account.userName}</span> <a href="javascript:;" style={{float: 'right'}}>使用匿名回答</a></p>
+                                        }}>{account.nickName}</span> <a href="javascript:;" style={{float: 'right'}}>使用匿名回答</a></p>
                                         <p>{account.bio}</p>
                                     </div>
                                 </div>
@@ -184,7 +184,7 @@ const mapStateToProps = (state, { match }) => {
             return a.time - b.time;
         }),
         ...rest,
-        questionId: match.questionId,
+        questionId: parseInt(match.params.questionId),
     };
 };
 const mapDispatchToProps = (dispatch, { match }) => {

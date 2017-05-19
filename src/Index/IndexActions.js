@@ -27,7 +27,7 @@ export const load = ({
 
 export const loadMore = ({
     userId
-}) => api.loadEvents({
+}) => api.loadMore({
         userId
     }).then((response) => ({
         type: ActionTypes.loadMore,

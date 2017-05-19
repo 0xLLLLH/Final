@@ -29,6 +29,7 @@
     "gulp-util": "^3.0.8",
     "jsx-loader": "^0.13.2",
     "lodash": "^4.17.4",
+    "md5": "^2.2.1",
     "node-sass": "^4.5.2",
     "random-avatar": "^1.0.1",
     "random-paragraph": "^1.0.4",
