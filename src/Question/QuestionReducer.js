@@ -26,7 +26,7 @@ const answerList = (state, action) => {
     let newState = state || [];
     switch (action.type) {
     case ActionTypes.fetchAnswer:
-        return action.data || state;
+        return action.data;
     case ActionTypes.loadMore:
         return state.concat(action.data);
     case ActionTypes.upvote:

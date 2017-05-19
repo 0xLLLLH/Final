@@ -6,10 +6,11 @@ const eventArray = (state, action) => {
     let newState = state || [];
     switch (action.type) {
     case ActionTypes.fetchEvent:
+        return action.data.concat(state);
     case ActionTypes.loadMore:
-        return action.data;
+        return state.concat(action.data);
     default:
-        return newState;
+        return state || [];
     }
 };
 

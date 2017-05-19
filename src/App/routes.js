@@ -34,6 +34,6 @@ export default [
     {
         path: '/',
         exact: true,
-        main: Index
+        main: Index,
     },
 ];

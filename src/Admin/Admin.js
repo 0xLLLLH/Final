@@ -16,6 +16,7 @@ import * as AppActions from '../App/AppActions';
 
 import * as AdminActions from './AdminActions';
 import ProblemManage from './ProblemManage';
+import UserManage from './UserManage';
 import AdminIndex from './AdminIndex';
 
 const { TabPane } = Tabs;
@@ -94,6 +95,7 @@ class Admin extends React.Component {
                         </Menu>
                     </Sider>
                     <Switch>
+                        <Route path="/admin/userManage" component={UserManage} />
                         <Route path="/admin/problemManage" component={ProblemManage} />
                         <Route path="/admin" component={AdminIndex} />
                     </Switch>

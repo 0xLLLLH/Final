@@ -1,7 +1,7 @@
 import React from 'react';
 import { Mention } from 'antd';
 
-const users = ['afc163', 'benjycui', 'yiminghe', 'jljsj33', 'dqaria', 'RaoHai'];
+const users = ['admin', 'user' , 'afc163', 'benjycui', 'yiminghe', 'jljsj33', 'dqaria', 'RaoHai'];
 
 class AsyncMention extends React.Component {
     state = {

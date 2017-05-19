@@ -26,11 +26,11 @@ class Question extends React.Component {
     constructor(props) {
         super();
         props.onLoad({
-            questionId: parseInt(props.match.params.questionId, 10)
+            questionId: props.match.questionId
         });
     }
     render() {
-        const { account, question, questionId, onLoadMore, answerList, onSwitchSortRule, onToggleFollow, onUpvote, onDevote, onLoadComment, onHideComment } = this.props;
+        const { account, question, onLoadMore, answerList, onSwitchSortRule, onToggleFollow, onUpvote, onDevote, onLoadComment, onHideComment } = this.props;
         return (
             <Layout className="layout">
                 <Header className="header" style={{ position: 'fixed', width: '100%', zIndex: 99 }}>
@@ -120,38 +120,43 @@ class Question extends React.Component {
                             <Button style={{
                                 width: '650px',
                                 marginBottom: 10
-                            }} onClick={() => { onLoadMore({ questionId }) }}>加载更多</Button>
-                            <Card id="write_answer" style={{
-                                width: 650
-                            }}>
-                                <div style={{
-                                    height: 40,
-                                    marginBottom: 10
-                                }}>
-                                    <img src={account.avatarLink} width="40" height="40" style={{
-                                        float: 'left'
-                                    }}/>
-                                    <div style={{
-                                        marginLeft: 55
+                            }} onClick={() => { onLoadMore({ questionId: question.questionId }) }}>加载更多</Button>
+                            {
+                                account ? (
+
+                                    <Card id="write_answer" style={{
+                                        width: 650
                                     }}>
-                                        <p><span style={{
-                                            fontWeight: 'bold'
-                                        }}>{account.nickName}</span> <a href="javascript:;" style={{float: 'right'}}>使用匿名回答</a></p>
-                                        <p>{account.bio}</p>
-                                    </div>
-                                </div>
-                                <AsyncMention
-                                    height="100"
-                                    multiLines/>
-                                <div style={{
-                                    height: 40,
-                                    marginTop: 10
-                                }}>
-                                    <Button type="primary" style={{
-                                        float: 'right'
-                                    }}>提交回答</Button>
-                                </div>
-                            </Card>
+                                        <div style={{
+                                            height: 40,
+                                            marginBottom: 10
+                                        }}>
+                                            <img src={account.avatarLink} width="40" height="40" style={{
+                                                float: 'left'
+                                            }} />
+                                            <div style={{
+                                                marginLeft: 55
+                                            }}>
+                                                <p><span style={{
+                                                    fontWeight: 'bold'
+                                                }}>{account.userName}</span> <a href="javascript:;" style={{ float: 'right' }}>使用匿名回答</a></p>
+                                                <p>{account.bio}</p>
+                                            </div>
+                                        </div>
+                                        <AsyncMention
+                                            height="100"
+                                            multiLines />
+                                        <div style={{
+                                            height: 40,
+                                            marginTop: 10
+                                        }}>
+                                            <Button type="primary" style={{
+                                                float: 'right'
+                                            }}>提交回答</Button>
+                                        </div>
+                                    </Card>
+                                ) : undefined
+                            }
                         </Content>
                         <Sider width={200} style={{ background: '#fff' }}>
                             <div style={{ marginBottom: '10px', fontSize: '16px' }}>
@@ -179,12 +184,12 @@ const mapStateToProps = (state, { match }) => {
         sortRule,
         answerList: answerList.sort((a, b) => {
             if (state.Question.sortRule === 'LIKE') {
-                return b.like - a.like;
+                return b.upvote - a.upvote;
             }
             return a.time - b.time;
         }),
         ...rest,
-        questionId: parseInt(match.params.questionId),
+        questionId: match.questionId,
     };
 };
 const mapDispatchToProps = (dispatch, { match }) => {

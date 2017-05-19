@@ -72,7 +72,7 @@ class Home extends React.Component {
                                         }}>{account.bio}</span></p>
                                         <p style={{
                                             fontSize: 16
-                                        }}><Icon type="environment" /> {account.location || '未知'}</p>
+                                        }}><Icon type="global" /> {account.location || '未知'}</p>
                                         <p>查看详细资料<Icon type="down" /></p>
                                         <Button style={{
                                             float: 'right',
@@ -89,9 +89,9 @@ class Home extends React.Component {
                                     <Tabs defaultActiveKey="1" style={{
                                         marginTop: 12
                                     }}>
-                                        <TabPane tab="动态" key="1">没有更多动态</TabPane>
-                                        <TabPane tab="回答" key="2">没有更多回答</TabPane>
-                                        <TabPane tab="提问" key="3">没有更多提问</TabPane>
+                                        <TabPane tab="动态" key="1">动态</TabPane>
+                                        <TabPane tab="回答" key="2">回答</TabPane>
+                                        <TabPane tab="提问" key="3">提问</TabPane>
                                     </Tabs>
                                 )} style={{
                                     minHeight: 120

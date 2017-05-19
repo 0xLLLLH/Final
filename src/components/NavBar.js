@@ -14,6 +14,7 @@ import SearchInput from './SearchInput';
 
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
+import EditableTagGroup from './EditableTagGroup';
 
 import './NavBar.scss';
 
@@ -31,6 +32,9 @@ const CollectionCreateForm = Form.create()(
                     })(
                         <Input />
                         )}
+                </FormItem>
+                <FormItem label="Tags">
+                    <EditableTagGroup />
                 </FormItem>
                 <FormItem label="Description">
                     {getFieldDecorator('description')(<Input type="textarea" />)}
@@ -177,8 +181,8 @@ class NavBar extends React.Component{
                                         style={{
                                             marginLeft: 15
                                         }}
-                                        onClick={e =>this.showModal('signup')}
-                                    >注册</Button>
+                                        onClick={e => { /* this.showModal('signup')*/ }}
+                                    ><Link to="/signup">注册</Link></Button>
                                 </span>
                             )
                     }

@@ -8,7 +8,7 @@ import {
     Link
 } from 'react-router-dom';
 
-const EventLike = ({ id, source: user, type, answer, question, time }) => (
+const EventLike = ({ _id, source: user, type, answer, question, time }) => (
     <Card style={{
         width: '650px',
         marginBottom: '5px'
@@ -28,7 +28,7 @@ const EventLike = ({ id, source: user, type, answer, question, time }) => (
                 style={{
                     marginRight: 0
                 }}
-            >{answer.upvote || 0}</Tag>
+            >{answer.like || 0}</Tag>
         </div>
         <div className="event-main"
             style={{
@@ -37,7 +37,7 @@ const EventLike = ({ id, source: user, type, answer, question, time }) => (
             }}
         >
             <div className="event-source">
-                {user.nickName} 赞同了回答 • {`${time}`}
+                {user.userName} 赞同了回答 • {`${time}`}
             </div>
             <div className="event-content">
                 <p style={{ fontSize: '16px' }}><Link to={`/question/${question.id}`}>{question.title}</Link></p>
@@ -58,7 +58,7 @@ const EventLike = ({ id, source: user, type, answer, question, time }) => (
 
 );
 
-const EventAnswer = ({ id, source: user, type, answer, question, time }) => (
+const EventAnswer = ({ _id, source: user, type, answer, question, time }) => (
     <Card style={{
         width: 650
     }}>
@@ -77,7 +77,7 @@ const EventAnswer = ({ id, source: user, type, answer, question, time }) => (
                 style={{
                     marginRight: 0
                 }}
-            >{answer.upvote || 0}</Tag>
+            >{answer.like || 0}</Tag>
         </div>
         <div className="event-main"
             style={{
@@ -86,7 +86,7 @@ const EventAnswer = ({ id, source: user, type, answer, question, time }) => (
             }}
         >
             <div className="event-source">
-                {user.nickName} 回答了问题 • {`${time}`}
+                {user.userName} 回答了问题 • {`${time}`}
             </div>
             <div className="event-content">
                 <p style={{ fontSize: '16px' }}><Link to={`/question/${question.id}`}>{question.title}</Link></p>
@@ -122,7 +122,7 @@ const TimeLine = ({eventArray}) => (
     <div className="time-line-wrap">
         {
             eventArray.map((ev) => (
-                <UserEvent key={ev.id} {...ev} />
+                <UserEvent key={ev._id} {...ev} />
             ))
         }
     </div>
