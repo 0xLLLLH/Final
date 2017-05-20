@@ -52,7 +52,7 @@ const ProblemManage = ({ account }) => (
     <Layout style={{ padding: '0 24px 24px' }}>
         <Breadcrumb style={{ margin: '12px 0' }}>
             <Breadcrumb.Item>Admin</Breadcrumb.Item>
-            <Breadcrumb.Item>ProblemManage</Breadcrumb.Item>
+            <Breadcrumb.Item>UserManage</Breadcrumb.Item>
         </Breadcrumb>
         <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
             <Table columns={columns} dataSource={data} />

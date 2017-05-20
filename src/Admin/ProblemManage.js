@@ -23,7 +23,7 @@ const columns = [{
     title: 'ProblemId',
     dataIndex: 'id',
     key: 'id',
-    render: id => <Link to={`/problem/${id}`}>{id}</Link>,
+    render: id => <Link to={`/question/${id}`}>{id}</Link>,
 }, {
     title: 'UserName',
     dataIndex: 'userName',
@@ -46,15 +46,15 @@ const columns = [{
 
 const data = [{
     id: '3F4567891',
-    userName: 'User1',
-    title: 'question 1'
+    userName: 'admin',
+    title: '碎片化阅读的危害是什么？'
 }, {
     id: '3F4567897',
-    userName: 'User1',
-    title: 'question 2'
+    userName: 'admin',
+    title: '被自己写的代码丑哭是一种什么样的体验？'
 }, {
     id: '3F3456789',
-    userName: 'User1',
+    userName: 'admin',
     title: 'question 3'
 },];
 
